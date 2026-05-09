@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Amazon Promo Bot</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/dashboard.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">V1 manual fixa</p>
+          <h1>Amazon Promo Bot</h1>
+          <p class="subtitle">Painel pessoal para revisar livros, links afiliados e mensagens prontas.</p>
+        </div>
+        <div class="header-pills">
+          <span class="pill" id="api-status">API verificando...</span>
+          <span class="pill">Tag: {{ associate_tag_masked }}</span>
+          <span class="pill">Fonte: {{ amazon_source }}</span>
+        </div>
+      </header>
+
+      <section class="warning-banner" id="amazon-banner">
+        Preços reais ainda não estão sendo consultados. Esta V1 usa lista fixa/manual. Produtos com link afiliado não significam promoção.
+      </section>
+
+      <section class="summary-grid" aria-label="Resumo">
+        <article class="summary-card">
+          <span>Total monitorados</span>
+          <strong id="summary-total">-</strong>
+        </article>
+        <article class="summary-card">
+          <span>Links prontos</span>
+          <strong id="summary-ready">-</strong>
+        </article>
+        <article class="summary-card">
+          <span>Pendentes de ASIN</span>
+          <strong id="summary-pending">-</strong>
+        </article>
+        <article class="summary-card">
+          <span>Promoções verificadas</span>
+          <strong id="summary-promotions">-</strong>
+        </article>
+        <article class="summary-card">
+          <span>Fonte atual</span>
+          <strong class="source-value" id="summary-source">manual</strong>
+        </article>
+      </section>
+
+      <main class="dashboard-stack">
+        <section class="panel compact-panel" id="amazon-status-panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Status da Amazon</h2>
+              <p>Consulta real de preço só ficará ativa quando a integração oficial estiver pronta.</p>
+            </div>
+            <button class="button primary action-button-small" data-action="refresh-prices">Atualizar preços</button>
+          </div>
+          <div class="status-grid">
+            <div><span>Fonte</span><strong id="status-source">-</strong></div>
+            <div><span>Tag</span><strong id="status-tag">-</strong></div>
+            <div><span>Creators API</span><strong id="status-creators">-</strong></div>
+            <div><span>Preço real</span><strong id="status-prices">-</strong></div>
+            <div><span>Promoções reais</span><strong id="status-promotions">-</strong></div>
+          </div>
+          <p class="status-message" id="status-message">Carregando status...</p>
+        </section>
+
+        <section class="panel top-books-section" id="top-books-section">
+          <div class="panel-heading">
+            <div>
+              <h2 id="top-books-title">Top livros para checar hoje</h2>
+              <p id="top-books-subtitle">Sugestões com link pronto para abrir e conferir manualmente na Amazon.</p>
+            </div>
+            <div class="top-actions">
+              <button class="button action-button-small" data-action="refresh-prices">Atualizar preços</button>
+              <button class="button action-button-small" data-action="scroll-links-ready">Ver links prontos</button>
+              <button class="button action-button-small" data-action="scroll-pending">Validar pendentes</button>
+            </div>
+          </div>
+          <p class="top-help" id="top-books-help">
+            Estes livros têm link afiliado pronto, mas o preço ainda precisa ser conferido manualmente na Amazon.
+          </p>
+          <div class="top-books-container" id="top-books-container"></div>
+        </section>
+
+        <section class="panel" id="verified-promotions-section">
+          <div class="panel-heading">
+            <div>
+              <h2>Promoções verificadas</h2>
+              <p>Somente livros com preço/desconto verificado por fonte oficial aparecem aqui.</p>
+            </div>
+            <button class="button action-button-small" data-action="refresh-data">Atualizar</button>
+          </div>
+          <div class="promotion-list" id="promotions-list"></div>
+        </section>
+
+        <section class="panel" id="monitored-books">
+          <div class="panel-heading">
+            <div>
+              <h2>Livros monitorados</h2>
+              <p>Catálogo fixo/manual. “Link pronto” indica ASIN + link afiliado, não promoção.</p>
+            </div>
+            <button class="button action-button-small" data-action="refresh-data">Atualizar</button>
+          </div>
+
+          <div class="filters compact-filters">
+            <input type="search" id="filter-search" placeholder="Buscar título/autor">
+            <select id="filter-category" aria-label="Categoria">
+              <option value="">Categoria</option>
+            </select>
+            <select id="filter-status" aria-label="Status">
+              <option value="all">Todos</option>
+              <option value="pending">Pendente de ASIN</option>
+              <option value="link_ready">Link pronto</option>
+              <option value="price_unverified">Preço não verificado</option>
+              <option value="promotion">Promoção verificada</option>
+              <option value="inactive">Inativo</option>
+            </select>
+            <select id="filter-priority" aria-label="Prioridade">
+              <option value="">Prioridade</option>
+              <option value="1">Prioridade 1</option>
+              <option value="2">Prioridade 2</option>
+              <option value="3">Prioridade 3</option>
+              <option value="4">Prioridade 4</option>
+              <option value="5">Prioridade 5</option>
+            </select>
+            <select id="filter-format" aria-label="Formato">
+              <option value="">Formato</option>
+            </select>
+            <button class="button action-button-small" data-action="clear-filters">Limpar</button>
+          </div>
+
+          <div class="quick-filters">
+            <button class="chip-button" data-action="quick-filter" data-status="link_ready">Só links prontos</button>
+            <button class="chip-button" data-action="quick-filter" data-status="pending">Só pendentes</button>
+            <button class="chip-button" data-action="quick-filter" data-status="promotion">Só promoções verificadas</button>
+          </div>
+
+          <div class="table-wrap">
+            <table class="compact-table">
+              <thead>
+                <tr>
+                  <th>Livro</th>
+                  <th>Categoria</th>
+                  <th>Status</th>
+                  <th>Preço</th>
+                  <th>Prioridade</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel" id="pending-validation">
+          <div class="panel-heading">
+            <div>
+              <h2>Pendentes de validação</h2>
+              <p>Abra a busca, escolha a edição correta na Amazon e cole a URL ou ASIN.</p>
+            </div>
+          </div>
+          <div class="pending-grid" id="pending-list"></div>
+        </section>
+
+        <section class="panel export-panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Exportações</h2>
+              <p>Exporta produtos com link afiliado. Campos de preço só aparecem quando forem verificados por API oficial.</p>
+            </div>
+          </div>
+          <div class="export-actions">
+            <a class="button primary action-button-small" href="/exports/ready.json" download>Baixar JSON</a>
+            <a class="button primary action-button-small" href="/exports/ready.csv" download>Baixar CSV</a>
+            <button class="button action-button-small" data-action="copy-all-ready">Copiar todas as mensagens com link pronto</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="message-modal" id="message-modal" aria-hidden="true">
+      <div class="message-modal__backdrop" data-action="close-message-modal"></div>
+      <section class="message-modal__panel" role="dialog" aria-modal="true" aria-labelledby="message-modal-title">
+        <header class="message-modal__header">
+          <div>
+            <p class="eyebrow">Mensagem pronta</p>
+            <h2 id="message-modal-title">Livro</h2>
+          </div>
+          <button class="button action-button-small" data-action="close-message-modal">Fechar</button>
+        </header>
+        <pre class="message-modal__content" id="message-modal-content">Carregando...</pre>
+        <footer class="message-modal__footer">
+          <button class="button primary action-button-small" data-action="copy-open-message">Copiar mensagem</button>
+        </footer>
+      </section>
+    </div>
+
+    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+  </body>
+</html>

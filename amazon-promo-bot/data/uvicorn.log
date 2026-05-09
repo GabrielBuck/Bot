@@ -1,0 +1,72 @@
+INFO:     127.0.0.1:49912 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58432 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58432 - "POST /manual-products/import-seed HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58432 - "GET /manual-products?needs_asin=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58432 - "GET /manual-products/ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58432 - "GET /manual-products/56/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62172 - "GET /manual-products/ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62172 - "GET /manual-products/56/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62178 - "GET /manual-products/ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62178 - "PATCH /manual-products/4/asin HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58119 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58119 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52160 - "GET /manual-products/ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52160 - "GET /manual-products/56/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52160 - "GET /manual-products/4/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52160 - "GET /manual-products/5/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52160 - "GET /manual-products/44/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52160 - "GET /manual-products/46/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52160 - "GET /manual-products/79/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52160 - "GET /manual-products/47/message HTTP/1.1" 200 OK
+  INFO:     127.0.0.1:58425 - "GET / HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:58426 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58427 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58428 - "GET /static/dashboard.js HTTP/1.1" 200 OK
+ INFO:     127.0.0.1:55070 - "GET / HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:55071 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55072 - "GET /exports/ready.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55073 - "GET /exports/ready.csv HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57830 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63278 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63278 - "GET /dynamic-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63278 - "GET /exports/ready.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63278 - "GET /exports/ready.csv HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63278 - "GET /manual-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63278 - "PATCH /manual-products/121/active HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63278 - "PATCH /manual-products/121/active HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53406 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53558 - "GET /static/styles.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62057 - "GET /static/dashboard.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55257 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55257 - "GET /static/styles.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64077 - "GET /static/dashboard.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64077 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55257 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61453 - "GET /dynamic-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64119 - "GET /manual-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65101 - "GET /manual-products/ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64119 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59946 - "GET /manual-products/56/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49881 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49881 - "GET /static/styles.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53634 - "GET /static/dashboard.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53634 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49881 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64950 - "GET /dynamic-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63086 - "GET /manual-products/ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53885 - "GET /manual-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61531 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61533 - "GET /promotions HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:61534 - "GET /integrations/amazon/status HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:61532 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63268 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63268 - "GET /static/styles.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54780 - "GET /static/dashboard.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54780 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63268 - "GET /integrations/amazon/status HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:56184 - "GET /promotions HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:61520 - "GET /manual-products/ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65375 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65384 - "GET /manual-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51835 - "POST /prices/refresh HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:65394 - "GET /manual-products/145/message HTTP/1.1" 200 OK
